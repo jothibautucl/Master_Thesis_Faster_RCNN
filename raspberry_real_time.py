@@ -69,7 +69,7 @@ if __name__ == "__main__":
     else:
         frame_queue = Queue()
         flag_queue = Queue()
-        p_detection = Process(target=run_detection, args=(10, resolution, 0.3, 50, use_motor, C, frame_queue, flag_queue))
+        p_detection = Process(target=run_detection, args=(10, resolution, 0.3, 50, 30, use_motor, output_results_filename, C, frame_queue, flag_queue))
         p_processing = Process(target=run_processing, args=(bbox_threshold, C, output_results_filename, use_gpu, frame_queue, flag_queue))
         p_detection.start()
         p_processing.start()
