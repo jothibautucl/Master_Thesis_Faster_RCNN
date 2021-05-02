@@ -134,12 +134,12 @@ def run_detection(fps, resolution, alpha, min_area, crop_margin, use_motor, imag
             y = int(y / frame_w_ratio)
             w = int(w / frame_w_ratio)
             h = int(h / frame_w_ratio)
-            cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
-            crop_y = max(y - crop_margin, 0)
-            crop_x = max(x - crop_margin, 0)
-            crop_w = min(x + w + crop_margin, frame_w) - x
-            crop_h = min(y + w + crop_margin, frame_h) - y
-            cropped_frame = frame[crop_y:crop_y + 2 * crop_h, crop_x:crop_x + 2 * crop_w]
+            # cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+            new_x1 = max(x - crop_margin, 0)
+            new_y1 = max(y - crop_margin, 0)
+            new_x2 = min(x + w + crop_margin, frame_w)
+            new_y2 = min(y + h + crop_margin, frame_h)
+            cropped_frame = frame[new_y1:new_y2, new_x1:new_x2].copy()
             count += 1
             cv2.imwrite(os.path.join(images_output_dir, "cropped_{}_{}.jpg".format(timestamp, count)), cropped_frame)
             frame_queue.put((timestamp, cropped_frame.copy(), count))

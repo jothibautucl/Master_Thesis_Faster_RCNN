@@ -1,1 +1,0 @@
-This is where all the data captured by the trap will be saved.
