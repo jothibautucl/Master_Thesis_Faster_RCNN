@@ -69,8 +69,12 @@ if __name__ == "__main__":
     else:
         frame_queue = Queue()
         flag_queue = Queue()
-        p_detection = Process(target=run_detection, args=(10, resolution, 0.3, 100, 30, use_motor, output_results_filename, C, frame_queue, flag_queue))
-        p_processing = Process(target=run_processing, args=(bbox_threshold, C, output_results_filename, use_gpu, frame_queue, flag_queue))
+        images_output_dir = os.path.join(output_results_filename, "images_{}".format(get_timestamp()))
+        record_path = os.path.join(output_results_filename, "raw_detections_{}.csv".format(get_timestamp()))
+        if not os.path.exists(images_output_dir):
+            os.mkdir(images_output_dir)
+        p_detection = Process(target=run_detection, args=(10, resolution, 0.3, 1000, 80, use_motor, images_output_dir, C, frame_queue, flag_queue))
+        p_processing = Process(target=run_processing, args=(bbox_threshold, C, record_path, images_output_dir, use_gpu, frame_queue, flag_queue))
         p_detection.start()
         p_processing.start()
         try:
