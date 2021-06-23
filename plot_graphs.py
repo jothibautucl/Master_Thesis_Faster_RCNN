@@ -35,21 +35,21 @@ def get_average_roc(filename):
 
         return np.mean(roc)
 
-def elapsed_time_mAP_graph(time, mAP):
+def size_mAP_graph(time, mAP):
     plt.figure()
-    plt.xlabel('elapsed time')
-    plt.ylabel('mAP')
+    plt.xlabel('image size [px]', fontsize=14)
+    plt.ylabel('mAP', fontsize=14)
     plt.plot(time, mAP)
-    plt.title('Variation of mAP according to inference duration')
+    plt.title('Variation of mAP according to image size', fontsize=14)
     plt.savefig('./other/graphs/mAP-time')
 
 
-def elapsed_time_roc_graph(time, roc):
+def size_roc_graph(time, roc):
     plt.figure()
-    plt.xlabel('elapsed time')
-    plt.ylabel('mean roc auc')
+    plt.xlabel('image size [px]', fontsize=14)
+    plt.ylabel('mean roc auc', fontsize=14)
     plt.plot(time, roc)
-    plt.title('Variation of mean roc auc according to inference duration')
+    plt.title('Variation of mean ROC AUC according to image size', fontsize=14)
     plt.savefig('./other/graphs/rocauc-time')
 
 def errorbars_plot(x, ymean, ymin, ymax, title):
@@ -87,18 +87,19 @@ def model6000_validated_errorbars():
 
 
 if __name__ == '__main__':
-    # model_names = ["size100", "size200", "size300"]
-    # time = []
-    # mAP = []
-    # roc = []
-    # for name in model_names:
-    #     RPI_logs = "./output_files/logs_" + name + ".txt"
-    #     metrics = "./output_files/metrics_" + name + ".txt"
-    #     _, process_time = get_average_process_time(RPI_logs)
-    #     time.append(round(process_time, 3))
-    #     roc.append(round(get_average_roc(metrics), 3))
-    #     mAP.append(round(get_average_precision(metrics), 3))
-    #
-    # elapsed_time_roc_graph(time, roc)
-    # elapsed_time_mAP_graph(time, mAP)
-    model6000_validated_errorbars()
+    model_names = ["size100", "size200", "size300"]
+    time = []
+    mAP = []
+    roc = []
+    img_sizes = [100, 200, 300]
+    for name in model_names:
+        RPI_logs = "./other/output files/logs_" + name + ".txt"
+        metrics = "./other/output files/metrics_" + name + ".txt"
+        _, process_time = get_average_process_time(RPI_logs)
+        time.append(round(process_time, 3))
+        roc.append(round(get_average_roc(metrics), 3))
+        mAP.append(round(get_average_precision(metrics), 3))
+
+    size_roc_graph(img_sizes, roc)
+    size_mAP_graph(img_sizes, mAP)
+    # model6000_validated_errorbars()

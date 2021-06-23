@@ -21,12 +21,11 @@ def display_histogram(hist, title, type):
     plt.bar(bin_edges[:-1], hist, width=0.5, color=col, alpha=None)
     plt.xlim(min(bin_edges), max(bin_edges))
     plt.grid(axis='y', alpha=0.75)
-    plt.xlabel('Value', fontsize=15)
-    plt.ylabel('Frequency', fontsize=15)
-    plt.xticks(fontsize=15)
-    plt.yticks(fontsize=15)
-    plt.ylabel('Frequency', fontsize=15)
-    plt.title(title, fontsize=15)
+    plt.xlabel('Value', fontsize=22)
+    plt.ylabel('Frequency', fontsize=22)
+    plt.xticks(fontsize=22)
+    plt.yticks(fontsize=22)
+    plt.title(title, fontsize=22)
     plt.savefig(os.path.join('./other/histograms', title))
 
 

@@ -556,6 +556,7 @@ def evaluate_trap_results():
 
     for dir_path in [x[0] for x in os.walk(data_test_path) if x[0] != data_test_path]:
         annotation_path = os.path.join(dir_path, 'annotations.txt')
+        print(dir_path)
         test_imgs, _, _ = get_data(annotation_path, dir_path)
 
         T = {}

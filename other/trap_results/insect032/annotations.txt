@@ -1,0 +1,2 @@
+raw_17-06-2021_14-32-00.jpg,898,428,1405,773,bombus_terrestris
+raw_17-06-2021_14-32-00b.jpg,173,148,683,474,bombus_terrestris

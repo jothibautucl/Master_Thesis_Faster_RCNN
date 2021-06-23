@@ -1,0 +1,2 @@
+cropped_09-06-2021_14-27-01_1.jpg,375,419,587,520,bombus_hypnorum
+cropped_09-06-2021_14-27-01_1b.jpg,69,141,226,259,bombus_hypnorum
